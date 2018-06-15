@@ -14,51 +14,59 @@ import co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.Vehiculo;
 import co.ceiba.parqueadero.parqueaderoJohnRamirez.repositorio.TiqueteParqueoRepositorio;
 
 @Controller
-public class VigilanteService {
+public class VigilanteService implements IVigilanteService {
 	@Autowired
 	TiqueteParqueoRepositorio tiqueteParqueoRepositorio;
+	@Autowired
+	ParqueaderoService parqueaderoService;
 	TiqueteParqueo tiqueteParqueo;
 
-	public void registrarIngreso(Vehiculo vehiculo, Calendar calendar) {
+	public boolean registrarIngreso(Vehiculo vehiculo, Calendar calendar) {
 		if (!verificarPlaca(vehiculo.getPlaca())) {
-			if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.Carro.toString())) {
-				if (verificarDisponibilidadCarro(tiqueteParqueoRepositorio.cantidadCarrosParqueados())) {
-					tiqueteParqueo = new TiqueteParqueo(vehiculo.getPlaca(), vehiculo.getTipoVehiculo(),
-							vehiculo.getCilindraje(), new Date(), null, 0);
-					tiqueteParqueoRepositorio.save(tiqueteParqueo);
-				} else {
-					throw new DisponibilidadExcepcion("No hay cupo en el parqueadero para carros");
-				}
-			} else if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.Moto.toString())) {
-				if (verificarDisponibilidadMoto(tiqueteParqueoRepositorio.cantidadMotosParqueados())) {
-					tiqueteParqueo = new TiqueteParqueo(vehiculo.getPlaca(), vehiculo.getTipoVehiculo(),
-							vehiculo.getCilindraje(), new Date(), null, 0);
-					tiqueteParqueoRepositorio.save(tiqueteParqueo);
-				} else {
-					throw new DisponibilidadExcepcion("No hay cupo en el parqueadero para motos");
-				}
+			if(validarTipoVehiculo(vehiculo)) {
+				registrar(vehiculo);
 			}
 		} else if (verificarDiaSemana(calendar)) {
-			if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.Carro.toString())) {
-				if (verificarDisponibilidadCarro(tiqueteParqueoRepositorio.cantidadCarrosParqueados())) {
-					tiqueteParqueo = new TiqueteParqueo(vehiculo.getPlaca(), vehiculo.getTipoVehiculo(),
-							vehiculo.getCilindraje(), new Date(), null, 0);
-					tiqueteParqueoRepositorio.save(tiqueteParqueo);
-				} else {
-					throw new DisponibilidadExcepcion("No hay cupo en el parqueadero para carros");
-				}
-			} else if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.Moto.toString())) {
-				if (verificarDisponibilidadMoto(tiqueteParqueoRepositorio.cantidadMotosParqueados())) {
-					tiqueteParqueo = new TiqueteParqueo(vehiculo.getPlaca(), vehiculo.getTipoVehiculo(),
-							vehiculo.getCilindraje(), new Date(), null, 0);
-					tiqueteParqueoRepositorio.save(tiqueteParqueo);
-				} else {
-					throw new DisponibilidadExcepcion("No hay cupo en el parqueadero para motos");
-				}
+			if(validarTipoVehiculo(vehiculo)) {
+				registrar(vehiculo);
 			}
 		} else {
 			throw new PlacaExcepcion("No está autorizado para ingresar");
 		}
+		return false;
+	}
+
+	public boolean validarTipoVehiculo(Vehiculo vehiculo) {
+		if (isCarro(vehiculo)) {
+			if (!parqueaderoService.verificarDisponibilidadCarro(tiqueteParqueoRepositorio)) {
+				throw new DisponibilidadExcepcion("No hay cupo en el parqueadero para carros");
+			}
+		} else if (isMoto(vehiculo)) {
+			if (parqueaderoService.verificarDisponibilidadMoto(tiqueteParqueoRepositorio)) {
+				throw new DisponibilidadExcepcion("No hay cupo en el parqueadero para motos");
+			}
+		}
+		return true;
+	}
+
+	public void registrar(Vehiculo vehiculo) {
+		tiqueteParqueo = new TiqueteParqueo(vehiculo.getPlaca(), vehiculo.getTipoVehiculo(), vehiculo.getCilindraje(),
+				new Date(), null, 0);
+		tiqueteParqueoRepositorio.save(tiqueteParqueo);
+	}
+
+	public boolean isCarro(Vehiculo vehiculo) {
+		if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.Carro.toString())) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isMoto(Vehiculo vehiculo) {
+		if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.Moto.toString())) {
+			return true;
+		}
+		return false;
 	}
 
 	public boolean verificarDiaSemana(Calendar calendar) {
@@ -74,20 +82,6 @@ public class VigilanteService {
 			return false;
 		}
 		return true;
-	}
-
-	public boolean verificarDisponibilidadCarro(int cantidadCarrosParqueados) {
-		if (cantidadCarrosParqueados < 20) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean verificarDisponibilidadMoto(int cantidadMotosParqueados) {
-		if (cantidadMotosParqueados < 10) {
-			return true;
-		}
-		return false;
 	}
 
 }

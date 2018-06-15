@@ -9,7 +9,7 @@ public class VehiculoPlacaIniciaPorA {
 	private String tipoVehiculo;
 
 	public VehiculoPlacaIniciaPorA() {
-		this.placa = "AWE-125";
+		this.placa = "FZV-283";
 		this.cilindraje = 220;
 		this.tipoVehiculo = "Carro";
 	}

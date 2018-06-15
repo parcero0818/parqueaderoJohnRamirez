@@ -4,6 +4,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.Calendar;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,16 +14,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import co.ceiba.parqueadero.parqueaderoJohnRamirez.enums.Propiedades;
 import co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.Vehiculo;
+import co.ceiba.parqueadero.parqueaderoJohnRamirez.repositorio.PropiedadesRepositorio;
 import co.ceiba.parqueadero.parqueaderoJohnRamirez.repositorio.TiqueteParqueoRepositorio;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.service.VigilanteService;
+import co.ceiba.parqueadero.parqueaderoJohnRamirez.service.IParqueaderoService;
+import co.ceiba.parqueadero.parqueaderoJohnRamirez.service.IVigilanteService;
 import co.ceiba.parqueadero.parqueaderoJohnRamirez.test.VehiculoPlacaIniciaPorA;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ParqueaderoJohnRamirezApplicationTests {
 	@Autowired
-	VigilanteService vigilanteService;
+	IVigilanteService vigilanteService;
+	@Autowired
+	IParqueaderoService parqueaderoService;
+	
+	@Autowired
+	PropiedadesRepositorio propiedadesRepositorio;
 
 	@Before
 	public void setup() {
@@ -38,7 +47,7 @@ public class ParqueaderoJohnRamirezApplicationTests {
 		TiqueteParqueoRepositorio tiqueteParqueoRepositorio = mock(TiqueteParqueoRepositorio.class);
 		when(tiqueteParqueoRepositorio.cantidadCarrosParqueados()).thenReturn(19);
 		// Act
-		boolean disponible = vigilanteService.verificarDisponibilidadCarro(tiqueteParqueoRepositorio.cantidadCarrosParqueados());
+		boolean disponible = parqueaderoService.verificarDisponibilidadCarro(tiqueteParqueoRepositorio);
 		// Assert
 		Assert.assertTrue(disponible);
 	}
@@ -49,7 +58,7 @@ public class ParqueaderoJohnRamirezApplicationTests {
 		TiqueteParqueoRepositorio tiqueteParqueoRepositorio = mock(TiqueteParqueoRepositorio.class);
 		when(tiqueteParqueoRepositorio.cantidadCarrosParqueados()).thenReturn(20);
 		// Act
-		boolean disponible = vigilanteService.verificarDisponibilidadCarro(tiqueteParqueoRepositorio.cantidadCarrosParqueados());
+		boolean disponible = parqueaderoService.verificarDisponibilidadCarro(tiqueteParqueoRepositorio);
 		// Assert
 		Assert.assertFalse(disponible);
 	}
@@ -60,7 +69,7 @@ public class ParqueaderoJohnRamirezApplicationTests {
 		TiqueteParqueoRepositorio tiqueteParqueoRepositorio = mock(TiqueteParqueoRepositorio.class);
 		when(tiqueteParqueoRepositorio.cantidadMotosParqueados()).thenReturn(9);
 		// Act
-		boolean disponible = vigilanteService.verificarDisponibilidadMoto(tiqueteParqueoRepositorio.cantidadMotosParqueados());
+		boolean disponible = parqueaderoService.verificarDisponibilidadMoto(tiqueteParqueoRepositorio);
 		// Assert
 		Assert.assertTrue(disponible);
 	}
@@ -71,7 +80,7 @@ public class ParqueaderoJohnRamirezApplicationTests {
 		TiqueteParqueoRepositorio tiqueteParqueoRepositorio = mock(TiqueteParqueoRepositorio.class);
 		when(tiqueteParqueoRepositorio.cantidadMotosParqueados()).thenReturn(10);
 		// Act
-		boolean disponible = vigilanteService.verificarDisponibilidadMoto(tiqueteParqueoRepositorio.cantidadMotosParqueados());
+		boolean disponible = parqueaderoService.verificarDisponibilidadMoto(tiqueteParqueoRepositorio);
 		// Assert
 		Assert.assertFalse(disponible);
 	}
@@ -123,10 +132,28 @@ public class ParqueaderoJohnRamirezApplicationTests {
 	public void registrarIngreso() {
 		//Arrange
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		//calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		Vehiculo vehiculo = new VehiculoPlacaIniciaPorA().build();
 		//Act
-		vigilanteService.registrarIngreso(vehiculo, calendar);
+		boolean isRegistro = vigilanteService.registrarIngreso(vehiculo, calendar);
+		//Assert
+		Assert.assertTrue(isRegistro);
+	}
+	
+	@Test
+	public void obtenerPropiedad() {
+		//Arrange
+		String nombrePropiedad = Propiedades.cantidadCarros.toString();
+		//Act
+		String carros = parqueaderoService.obtenerValorPropiedad(nombrePropiedad);
+		//
+		Assert.assertEquals("20", carros);
+	}
+	
+	@Test
+	public void getPropiedades() {
+		List<co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.Propiedades> list = propiedadesRepositorio.findAll();
+		co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.Propiedades prop = list.get(0);
 	}
 
 }
