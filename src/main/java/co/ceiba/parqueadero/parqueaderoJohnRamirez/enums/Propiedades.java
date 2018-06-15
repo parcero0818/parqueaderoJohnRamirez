@@ -7,7 +7,8 @@ public enum Propiedades {
 	valorDiaCarro("valorDiaCarro"),
 	valorDiaMoto("valorDiaMoto"),
 	cantidadCarros("cantidadCarros"),
-	cantidadMotos("cantidadMotos");
+	cantidadMotos("cantidadMotos"),
+	placas("placas");
 
 	private String nombrePropiedad;
 

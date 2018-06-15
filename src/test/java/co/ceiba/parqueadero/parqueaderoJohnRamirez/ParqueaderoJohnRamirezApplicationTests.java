@@ -86,7 +86,7 @@ public class ParqueaderoJohnRamirezApplicationTests {
 	}
 	
 	@Test
-	public void placaIniciaPorA() {
+	public void placaPermitida() {
 		//Arrange
 		Vehiculo vehiculo = new VehiculoPlacaIniciaPorA().build();
 		//Act
@@ -132,7 +132,7 @@ public class ParqueaderoJohnRamirezApplicationTests {
 	public void registrarIngreso() {
 		//Arrange
 		Calendar calendar = Calendar.getInstance();
-		//calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		Vehiculo vehiculo = new VehiculoPlacaIniciaPorA().build();
 		//Act
 		boolean isRegistro = vigilanteService.registrarIngreso(vehiculo, calendar);
