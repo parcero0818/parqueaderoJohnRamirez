@@ -2,13 +2,13 @@ package co.ceiba.parqueadero.parqueaderojohnramirez.enums;
 
 public enum PropiedadesParqueadero {
 
-	costoHoraCarro("valorHoraCarro"),
-	costoHoraMoto("valorHoraMoto"),
-	costoDiaCarro("valorDiaCarro"),
+	CostoHoraCarro("valorHoraCarro"),
+	CostoHoraMoto("valorHoraMoto"),
+	CostoDiaCarro("valorDiaCarro"),
 	CostoDiaMoto("valorDiaMoto"),
-	cantCarrosPermitidos("cantidadCarros"),
-	cantMotosPermitidos("cantidadMotos"),
-	placasPermitidas("placas");
+	CantCarrosPermitidos("cantidadCarros"),
+	CantMotosPermitidos("cantidadMotos"),
+	PlacasPermitidas("placas");
 
 	private String nombrePropiedad;
 
