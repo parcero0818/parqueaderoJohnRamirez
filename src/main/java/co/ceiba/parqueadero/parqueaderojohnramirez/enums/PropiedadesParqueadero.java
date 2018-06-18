@@ -12,16 +12,12 @@ public enum PropiedadesParqueadero {
 
 	private String nombrePropiedad;
 
-	PropiedadesParqueadero(String nombrePropiead) {
+	private PropiedadesParqueadero(String nombrePropiead) {
 		this.nombrePropiedad = nombrePropiead;
 	}
 
 	public String getNombrePropiedad() {
 		return nombrePropiedad;
 	}
-
-	public void setNombrePropiedad(String nombrePropiedad) {
-		this.nombrePropiedad = nombrePropiedad;
-	}
-
+	
 }

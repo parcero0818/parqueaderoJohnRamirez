@@ -14,8 +14,4 @@ public enum TipoVehiculoEnum {
 		return tipoVehiculo;
 	}
 
-	public void setTipoVehiculo(String tipoVehiculo) {
-		this.tipoVehiculo = tipoVehiculo;
-	}
-
 }
