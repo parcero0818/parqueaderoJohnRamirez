@@ -143,7 +143,7 @@ public class ParqueaderoJohnRamirezApplicationTests {
 	@Test
 	public void obtenerPropiedad() {
 		//Arrange
-		String nombrePropiedad = PropiedadesParqueadero.cantCarrosPermitidos.getNombrePropiedad();
+		String nombrePropiedad = PropiedadesParqueadero.CantCarrosPermitidos.getNombrePropiedad();
 		//Act
 		String carros = parqueaderoService.obtenerValorPropiedad(nombrePropiedad);
 		//

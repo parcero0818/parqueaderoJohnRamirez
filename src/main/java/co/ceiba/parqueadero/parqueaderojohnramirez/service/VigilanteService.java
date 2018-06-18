@@ -63,14 +63,14 @@ public class VigilanteService implements IVigilanteService {
 	}
 
 	public boolean isCarro(Vehiculo vehiculo) {
-		if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.vehiculoCarro.getTipoVehiculo())) {
+		if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.VehiculoCarro.getTipoVehiculo())) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean isMoto(Vehiculo vehiculo) {
-		if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.vehiculoMoto.getTipoVehiculo())) {
+		if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.VehiculoMoto.getTipoVehiculo())) {
 			return true;
 		}
 		return false;
@@ -85,7 +85,7 @@ public class VigilanteService implements IVigilanteService {
 	}
 
 	public boolean verificarPlaca(String placa) {
-		String placasBd = propiedadesRepositorio.obtenerValorPropiedad(PropiedadesParqueadero.placasPermitidas.getNombrePropiedad());
+		String placasBd = propiedadesRepositorio.obtenerValorPropiedad(PropiedadesParqueadero.PlacasPermitidas.getNombrePropiedad());
 		String[] placas = placasBd.toLowerCase().split(",");
 		if (!Arrays.asList(placas).contains(placa.toLowerCase().substring(0, 1))) {
 			return false;
