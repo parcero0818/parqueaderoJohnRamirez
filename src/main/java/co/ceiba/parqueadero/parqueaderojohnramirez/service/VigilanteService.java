@@ -1,4 +1,4 @@
-package co.ceiba.parqueadero.parqueaderoJohnRamirez.service;
+package co.ceiba.parqueadero.parqueaderojohnramirez.service;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -7,14 +7,14 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.enums.Propiedades;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.enums.TipoVehiculoEnum;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.excepcion.DisponibilidadExcepcion;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.excepcion.PlacaExcepcion;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.TiqueteParqueo;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.Vehiculo;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.repositorio.PropiedadesRepositorio;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.repositorio.TiqueteParqueoRepositorio;
+import co.ceiba.parqueadero.parqueaderojohnramirez.excepcion.DisponibilidadExcepcion;
+import co.ceiba.parqueadero.parqueaderojohnramirez.excepcion.PlacaExcepcion;
+import co.ceiba.parqueadero.parqueaderojohnramirez.modelo.TiqueteParqueo;
+import co.ceiba.parqueadero.parqueaderojohnramirez.modelo.Vehiculo;
+import co.ceiba.parqueadero.parqueaderojohnramirez.repositorio.PropiedadesRepositorio;
+import co.ceiba.parqueadero.parqueaderojohnramirez.repositorio.TiqueteParqueoRepositorio;
+import co.ceiba.parqueadero.parqueaderojohnramirez.enums.PropiedadesParqueadero;
+import co.ceiba.parqueadero.parqueaderojohnramirez.enums.TipoVehiculoEnum;
 
 @Controller
 public class VigilanteService implements IVigilanteService {
@@ -85,7 +85,7 @@ public class VigilanteService implements IVigilanteService {
 	}
 
 	public boolean verificarPlaca(String placa) {
-		String placasBd = propiedadesRepositorio.obtenerValorPropiedad(Propiedades.placasPermitidas.getNombrePropiedad());
+		String placasBd = propiedadesRepositorio.obtenerValorPropiedad(PropiedadesParqueadero.placasPermitidas.getNombrePropiedad());
 		String[] placas = placasBd.toLowerCase().split(",");
 		if (!Arrays.asList(placas).contains(placa.toLowerCase().substring(0, 1))) {
 			return false;

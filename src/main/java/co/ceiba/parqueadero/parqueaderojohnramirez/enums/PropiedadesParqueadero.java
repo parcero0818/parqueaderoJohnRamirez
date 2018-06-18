@@ -1,6 +1,6 @@
-package co.ceiba.parqueadero.parqueaderoJohnRamirez.enums;
+package co.ceiba.parqueadero.parqueaderojohnramirez.enums;
 
-public enum Propiedades {
+public enum PropiedadesParqueadero {
 
 	costoHoraCarro("valorHoraCarro"),
 	costoHoraMoto("valorHoraMoto"),
@@ -12,7 +12,7 @@ public enum Propiedades {
 
 	private String nombrePropiedad;
 
-	Propiedades(String nombrePropiead) {
+	PropiedadesParqueadero(String nombrePropiead) {
 		this.nombrePropiedad = nombrePropiead;
 	}
 

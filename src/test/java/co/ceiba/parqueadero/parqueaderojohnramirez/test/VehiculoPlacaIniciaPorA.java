@@ -1,6 +1,6 @@
-package co.ceiba.parqueadero.parqueaderoJohnRamirez.test;
+package co.ceiba.parqueadero.parqueaderojohnramirez.test;
 
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.Vehiculo;
+import co.ceiba.parqueadero.parqueaderojohnramirez.modelo.Vehiculo;
 
 public class VehiculoPlacaIniciaPorA {
 

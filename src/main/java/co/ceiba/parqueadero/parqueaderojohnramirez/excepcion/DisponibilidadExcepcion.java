@@ -1,4 +1,4 @@
-package co.ceiba.parqueadero.parqueaderoJohnRamirez.excepcion;
+package co.ceiba.parqueadero.parqueaderojohnramirez.excepcion;
 
 public class DisponibilidadExcepcion extends RuntimeException {
 	/**

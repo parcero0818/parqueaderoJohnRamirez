@@ -1,8 +1,8 @@
-package co.ceiba.parqueadero.parqueaderoJohnRamirez.service;
+package co.ceiba.parqueadero.parqueaderojohnramirez.service;
 
 import java.util.Calendar;
 
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.Vehiculo;
+import co.ceiba.parqueadero.parqueaderojohnramirez.modelo.Vehiculo;
 
 public interface IVigilanteService {
 

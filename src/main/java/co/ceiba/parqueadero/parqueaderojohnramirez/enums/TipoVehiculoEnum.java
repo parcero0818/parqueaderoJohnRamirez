@@ -1,4 +1,4 @@
-package co.ceiba.parqueadero.parqueaderoJohnRamirez.enums;
+package co.ceiba.parqueadero.parqueaderojohnramirez.enums;
 
 public enum TipoVehiculoEnum {
 

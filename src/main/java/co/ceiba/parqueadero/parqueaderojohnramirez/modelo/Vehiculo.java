@@ -1,4 +1,4 @@
-package co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo;
+package co.ceiba.parqueadero.parqueaderojohnramirez.modelo;
 
 public class Vehiculo {
 

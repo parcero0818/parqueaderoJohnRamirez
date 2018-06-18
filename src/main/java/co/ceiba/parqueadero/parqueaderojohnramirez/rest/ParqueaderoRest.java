@@ -1,4 +1,4 @@
-package co.ceiba.parqueadero.parqueaderoJohnRamirez.rest;
+package co.ceiba.parqueadero.parqueaderojohnramirez.rest;
 
 import java.util.Calendar;
 import java.util.List;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.Propiedades;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.TiqueteParqueo;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.Vehiculo;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.repositorio.PropiedadesRepositorio;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.repositorio.TiqueteParqueoRepositorio;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.service.VigilanteService;
+import co.ceiba.parqueadero.parqueaderojohnramirez.modelo.Propiedades;
+import co.ceiba.parqueadero.parqueaderojohnramirez.modelo.TiqueteParqueo;
+import co.ceiba.parqueadero.parqueaderojohnramirez.modelo.Vehiculo;
+import co.ceiba.parqueadero.parqueaderojohnramirez.repositorio.PropiedadesRepositorio;
+import co.ceiba.parqueadero.parqueaderojohnramirez.repositorio.TiqueteParqueoRepositorio;
+import co.ceiba.parqueadero.parqueaderojohnramirez.service.VigilanteService;
 
 @RequestMapping("/parqueadero")
 @RestController

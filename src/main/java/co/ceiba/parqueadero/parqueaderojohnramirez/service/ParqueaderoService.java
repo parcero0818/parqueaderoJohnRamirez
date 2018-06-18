@@ -1,11 +1,11 @@
-package co.ceiba.parqueadero.parqueaderoJohnRamirez.service;
+package co.ceiba.parqueadero.parqueaderojohnramirez.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.enums.Propiedades;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.repositorio.PropiedadesRepositorio;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.repositorio.TiqueteParqueoRepositorio;
+import co.ceiba.parqueadero.parqueaderojohnramirez.repositorio.PropiedadesRepositorio;
+import co.ceiba.parqueadero.parqueaderojohnramirez.repositorio.TiqueteParqueoRepositorio;
+import co.ceiba.parqueadero.parqueaderojohnramirez.enums.PropiedadesParqueadero;
 @Controller
 public class ParqueaderoService implements IParqueaderoService{
 	
@@ -13,7 +13,7 @@ public class ParqueaderoService implements IParqueaderoService{
 	PropiedadesRepositorio propiedadesRepositorio;
 
 	public boolean verificarDisponibilidadCarro(TiqueteParqueoRepositorio tiqueteParqueoRepositorio) {
-		int cantidadCarrosPermitidos = Integer.parseInt(obtenerValorPropiedad(Propiedades.cantCarrosPermitidos.getNombrePropiedad()));
+		int cantidadCarrosPermitidos = Integer.parseInt(obtenerValorPropiedad(PropiedadesParqueadero.cantCarrosPermitidos.getNombrePropiedad()));
 		if (cantidadCarrosParqueados(tiqueteParqueoRepositorio) < cantidadCarrosPermitidos) {
 			return true;
 		}
@@ -21,7 +21,7 @@ public class ParqueaderoService implements IParqueaderoService{
 	}
 
 	public boolean verificarDisponibilidadMoto(TiqueteParqueoRepositorio tiqueteParqueoRepositorio) {
-		int cantidadMotosPermitidos = Integer.parseInt(obtenerValorPropiedad(Propiedades.cantMotosPermitidos.getNombrePropiedad()));
+		int cantidadMotosPermitidos = Integer.parseInt(obtenerValorPropiedad(PropiedadesParqueadero.cantMotosPermitidos.getNombrePropiedad()));
 		if (cantidadMotosParqueados(tiqueteParqueoRepositorio) < cantidadMotosPermitidos) {
 			return true;
 		}

@@ -1,4 +1,4 @@
-package co.ceiba.parqueadero.parqueaderoJohnRamirez;
+package co.ceiba.parqueadero.parqueaderojohnramirez;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -14,13 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.enums.Propiedades;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.Vehiculo;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.repositorio.PropiedadesRepositorio;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.repositorio.TiqueteParqueoRepositorio;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.service.IParqueaderoService;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.service.IVigilanteService;
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.test.VehiculoPlacaIniciaPorA;
+import co.ceiba.parqueadero.parqueaderojohnramirez.modelo.Vehiculo;
+import co.ceiba.parqueadero.parqueaderojohnramirez.repositorio.PropiedadesRepositorio;
+import co.ceiba.parqueadero.parqueaderojohnramirez.repositorio.TiqueteParqueoRepositorio;
+import co.ceiba.parqueadero.parqueaderojohnramirez.service.IParqueaderoService;
+import co.ceiba.parqueadero.parqueaderojohnramirez.service.IVigilanteService;
+import co.ceiba.parqueadero.parqueaderojohnramirez.test.VehiculoPlacaIniciaPorA;
+import co.ceiba.parqueadero.parqueaderojohnramirez.enums.PropiedadesParqueadero;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -143,7 +143,7 @@ public class ParqueaderoJohnRamirezApplicationTests {
 	@Test
 	public void obtenerPropiedad() {
 		//Arrange
-		String nombrePropiedad = Propiedades.cantCarrosPermitidos.getNombrePropiedad();
+		String nombrePropiedad = PropiedadesParqueadero.cantCarrosPermitidos.getNombrePropiedad();
 		//Act
 		String carros = parqueaderoService.obtenerValorPropiedad(nombrePropiedad);
 		//
@@ -152,8 +152,8 @@ public class ParqueaderoJohnRamirezApplicationTests {
 	
 	@Test
 	public void getPropiedades() {
-		List<co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.Propiedades> list = propiedadesRepositorio.findAll();
-		co.ceiba.parqueadero.parqueaderoJohnRamirez.modelo.Propiedades prop = list.get(0);
+		List<co.ceiba.parqueadero.parqueaderojohnramirez.modelo.Propiedades> list = propiedadesRepositorio.findAll();
+		co.ceiba.parqueadero.parqueaderojohnramirez.modelo.Propiedades prop = list.get(0);
 	}
 
 }

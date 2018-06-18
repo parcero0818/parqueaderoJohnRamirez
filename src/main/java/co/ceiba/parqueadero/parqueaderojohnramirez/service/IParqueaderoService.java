@@ -1,6 +1,6 @@
-package co.ceiba.parqueadero.parqueaderoJohnRamirez.service;
+package co.ceiba.parqueadero.parqueaderojohnramirez.service;
 
-import co.ceiba.parqueadero.parqueaderoJohnRamirez.repositorio.TiqueteParqueoRepositorio;
+import co.ceiba.parqueadero.parqueaderojohnramirez.repositorio.TiqueteParqueoRepositorio;
 
 public interface IParqueaderoService {
 
