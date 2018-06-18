@@ -2,7 +2,7 @@ package co.ceiba.parqueadero.parqueaderoJohnRamirez.enums;
 
 public enum TipoVehiculoEnum {
 
-	Carro("Carro"), Moto("Moto");
+	vehiculoCarro("Carro"), vehiculoMoto("Moto");
 
 	private String tipoVehiculo;
 

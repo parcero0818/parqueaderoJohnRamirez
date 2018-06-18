@@ -28,29 +28,29 @@ public class VigilanteService implements IVigilanteService {
 
 	public boolean registrarIngreso(Vehiculo vehiculo, Calendar calendar) {
 		if (!verificarPlaca(vehiculo.getPlaca())) {
-			if (validarTipoVehiculo(vehiculo)) {
+			if (validarDisponibilidadVehiculo(vehiculo)) {
 				registrar(vehiculo);
 				return true;
 			}
 		} else if (verificarDiaSemana(calendar)) {
-			if (validarTipoVehiculo(vehiculo)) {
+			if (validarDisponibilidadVehiculo(vehiculo)) {
 				registrar(vehiculo);
 				return true;
 			}
 		} else {
-			throw new PlacaExcepcion("No está autorizado para ingresar");
+			throw new PlacaExcepcion("No estï¿½ autorizado para ingresar");
 		}
 		return false;
 	}
 
-	public boolean validarTipoVehiculo(Vehiculo vehiculo) {
+	public boolean validarDisponibilidadVehiculo(Vehiculo vehiculo) {
 		if (isCarro(vehiculo)) {
 			if (!parqueaderoService.verificarDisponibilidadCarro(tiqueteParqueoRepositorio)) {
-				throw new DisponibilidadExcepcion("No hay cupo en el parqueadero para carros");
+				throw new DisponibilidadExcepcion("No hay cupo en el parqueadero para el tipo de vehiculo");
 			}
 		} else if (isMoto(vehiculo)) {
 			if (parqueaderoService.verificarDisponibilidadMoto(tiqueteParqueoRepositorio)) {
-				throw new DisponibilidadExcepcion("No hay cupo en el parqueadero para motos");
+				throw new DisponibilidadExcepcion("No hay cupo en el parqueadero para el tipo de vehiculo");
 			}
 		}
 		return true;
@@ -63,14 +63,14 @@ public class VigilanteService implements IVigilanteService {
 	}
 
 	public boolean isCarro(Vehiculo vehiculo) {
-		if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.Carro.toString())) {
+		if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.vehiculoCarro.getTipoVehiculo())) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean isMoto(Vehiculo vehiculo) {
-		if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.Moto.toString())) {
+		if (vehiculo.getTipoVehiculo().equalsIgnoreCase(TipoVehiculoEnum.vehiculoMoto.getTipoVehiculo())) {
 			return true;
 		}
 		return false;
@@ -85,7 +85,7 @@ public class VigilanteService implements IVigilanteService {
 	}
 
 	public boolean verificarPlaca(String placa) {
-		String placasBd = propiedadesRepositorio.obtenerValorPropiedad(Propiedades.placas.toString());
+		String placasBd = propiedadesRepositorio.obtenerValorPropiedad(Propiedades.placasPermitidas.getNombrePropiedad());
 		String[] placas = placasBd.toLowerCase().split(",");
 		if (!Arrays.asList(placas).contains(placa.toLowerCase().substring(0, 1))) {
 			return false;

@@ -13,7 +13,7 @@ public class ParqueaderoService implements IParqueaderoService{
 	PropiedadesRepositorio propiedadesRepositorio;
 
 	public boolean verificarDisponibilidadCarro(TiqueteParqueoRepositorio tiqueteParqueoRepositorio) {
-		int cantidadCarrosPermitidos = Integer.parseInt(obtenerValorPropiedad(Propiedades.cantidadCarros.toString()));
+		int cantidadCarrosPermitidos = Integer.parseInt(obtenerValorPropiedad(Propiedades.cantCarrosPermitidos.getNombrePropiedad()));
 		if (cantidadCarrosParqueados(tiqueteParqueoRepositorio) < cantidadCarrosPermitidos) {
 			return true;
 		}
@@ -21,7 +21,7 @@ public class ParqueaderoService implements IParqueaderoService{
 	}
 
 	public boolean verificarDisponibilidadMoto(TiqueteParqueoRepositorio tiqueteParqueoRepositorio) {
-		int cantidadMotosPermitidos = Integer.parseInt(obtenerValorPropiedad(Propiedades.cantidadMotos.toString()));
+		int cantidadMotosPermitidos = Integer.parseInt(obtenerValorPropiedad(Propiedades.cantMotosPermitidos.getNombrePropiedad()));
 		if (cantidadMotosParqueados(tiqueteParqueoRepositorio) < cantidadMotosPermitidos) {
 			return true;
 		}
